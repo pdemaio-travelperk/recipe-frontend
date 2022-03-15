@@ -4,14 +4,17 @@ import userInput from "../hooks/userInput";
 function SearchBar(props) {
     const [value, handleChange] = userInput('')
 
-    function search() {
+    function search(e) {
+        e.preventDefault()
         props.onSearch(value)
     }
 
     return (
         <div>
-            <input type={"text"} onChange={handleChange} value={value}/>
-            <button onClick={search}>🔍</button>
+            <form onSubmit={search}>
+                <input type={"text"} onChange={handleChange} value={value}/>
+                <button type="submit">🔍</button>
+            </form>
         </div>
     )
 }

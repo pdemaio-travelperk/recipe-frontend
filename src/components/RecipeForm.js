@@ -15,7 +15,6 @@ function RecipeForm(params) {
     function init(){
         async function loadRecipe() {
             const data = await apiClient.getById(id)
-            console.log(data)
             const recipeIngredients = data.ingredients.map(function (ingredient) {
                 return ingredient.name
             })
