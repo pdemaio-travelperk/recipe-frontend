@@ -1,6 +1,7 @@
 import userInput from "../hooks/userInput";
 import React, {useEffect, useState} from "react";
 import apiClient from "../common/apiClient";
+import {FormWrapper, Label, ListItem, SaveButton, SmallButton} from "../common/styled";
 
 function RecipeForm(params) {
 
@@ -92,17 +93,19 @@ function RecipeForm(params) {
             {!loading && <form onSubmit={save}>
 
                 <h2>Recipe</h2>
-                Name: <input aria-label="recipe-name" onChange={handleNameChange} value={name}/>
-                Description: <input aria-label="recipe-description" onChange={handleDescriptionChange} value={description}/>
+                <FormWrapper>
+                <Label>Name: <input aria-label="recipe-name" onChange={handleNameChange} value={name}/></Label>
+                <Label>Description: <input aria-label="recipe-description" onChange={handleDescriptionChange} value={description}/></Label>
+                </FormWrapper>
                 <h3>Ingredients</h3>
                 {ingredients.map(function (ingredient, idx) {
-                    return (<li key={idx}>{ingredient}
-                        <button id={idx} onClick={remove}>❌</button>
-                    </li>)
+                    return (<ListItem key={idx}>{ingredient}
+                        <SmallButton id={idx} onClick={remove}>❌</SmallButton>
+                    </ListItem>)
                 })}
                 Add new: <input aria-label="addIngredient" onChange={setNewIngredient} value={newIngredient}/>
                 <button aria-label="add" onClick={addIngredient}>Add</button>
-                <button aria-label="save" disabled={disabled} type="submit">Save</button>
+                <SaveButton aria-label="save" disabled={disabled} type="submit">Save</SaveButton>
             </form>
             }
         </div>

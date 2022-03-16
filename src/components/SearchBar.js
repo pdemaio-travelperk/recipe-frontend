@@ -1,5 +1,6 @@
 import React from "react";
 import userInput from "../hooks/userInput";
+import {SearchInput} from "../common/styled";
 
 function SearchBar(props) {
     const [value, handleChange] = userInput('')
@@ -12,7 +13,7 @@ function SearchBar(props) {
     return (
         <div>
             <form aria-label="search-bar" onSubmit={search}>
-                <input aria-label="search-input" type={"text"} onChange={handleChange} value={value}/>
+                <SearchInput aria-label="search-input" type={"text"} onChange={handleChange} value={value}/>
                 <button type="submit">🔍</button>
             </form>
         </div>

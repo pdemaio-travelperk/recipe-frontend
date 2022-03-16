@@ -1,6 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom"
 import apiClient from "../common/apiClient";
+import {Card, ListItem, SmallButton} from "../common/styled";
 
 function Recipe(props) {
     function deleteRecipe() {
@@ -17,17 +18,17 @@ function Recipe(props) {
     }
 
     return (
-        <div data-testid={"recipe"+props.value.id}>
+        <Card data-testid={"recipe"+props.value.id}>
             <h2>{props.value.name}</h2>
-            <button onClick={deleteRecipe}>🗑️</button>
+            <SmallButton onClick={deleteRecipe}>🗑️</SmallButton>
             <Link to={"/" + props.value.id}>
-                <button>✏️</button>
+                <SmallButton>✏️</SmallButton>
             </Link>
             <p>{props.value.description}</p>
             {props.value.ingredients.map(function (ingredient, idx) {
-                return (<li key={idx}>{ingredient.name}</li>)
+                return (<ListItem key={idx}>{ingredient.name}</ListItem>)
             })}
-        </div>
+        </Card>
     )
 }
 
