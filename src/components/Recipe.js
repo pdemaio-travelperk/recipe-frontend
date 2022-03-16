@@ -17,7 +17,7 @@ function Recipe(props) {
     }
 
     return (
-        <div>
+        <div data-testid={"recipe"+props.value.id}>
             <h2>{props.value.name}</h2>
             <button onClick={deleteRecipe}>🗑️</button>
             <Link to={"/" + props.value.id}>

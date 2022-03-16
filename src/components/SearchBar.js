@@ -11,8 +11,8 @@ function SearchBar(props) {
 
     return (
         <div>
-            <form onSubmit={search}>
-                <input type={"text"} onChange={handleChange} value={value}/>
+            <form aria-label="search-bar" onSubmit={search}>
+                <input aria-label="search-input" type={"text"} onChange={handleChange} value={value}/>
                 <button type="submit">🔍</button>
             </form>
         </div>

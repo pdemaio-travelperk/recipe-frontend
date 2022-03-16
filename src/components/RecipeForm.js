@@ -41,7 +41,8 @@ function RecipeForm(params) {
         }
     }, [name, description, ingredients])
 
-    function addIngredient() {
+    function addIngredient(e) {
+        e.preventDefault()
         if (newIngredient && newIngredient !== "") {
             setIngredients([...ingredients, newIngredient])
             cleanNewIngredient()
@@ -54,8 +55,8 @@ function RecipeForm(params) {
         setIngredients(list)
     }
 
-    function save() {
-
+    function save(e) {
+        e.preventDefault()
         async function save(recipe) {
             if (id) {
                 await apiClient.edit(id, JSON.stringify(recipe))
@@ -88,20 +89,21 @@ function RecipeForm(params) {
     return (
         <div>
             {loading && <div>Loading...</div>}
-            {!loading && <div>
+            {!loading && <form onSubmit={save}>
+
                 <h2>Recipe</h2>
-                Name: <input onChange={handleNameChange} value={name}/>
-                Description: <input onChange={handleDescriptionChange} value={description}/>
+                Name: <input aria-label="recipe-name" onChange={handleNameChange} value={name}/>
+                Description: <input aria-label="recipe-description" onChange={handleDescriptionChange} value={description}/>
                 <h3>Ingredients</h3>
                 {ingredients.map(function (ingredient, idx) {
                     return (<li key={idx}>{ingredient}
                         <button id={idx} onClick={remove}>❌</button>
                     </li>)
                 })}
-                Add new: <input onChange={setNewIngredient} value={newIngredient}/>
-                <button onClick={addIngredient}>Add</button>
-                <button disabled={disabled} onClick={save}>Save</button>
-            </div>
+                Add new: <input aria-label="addIngredient" onChange={setNewIngredient} value={newIngredient}/>
+                <button aria-label="add" onClick={addIngredient}>Add</button>
+                <button aria-label="save" disabled={disabled} type="submit">Save</button>
+            </form>
             }
         </div>
     )
